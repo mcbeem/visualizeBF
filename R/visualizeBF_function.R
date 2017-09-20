@@ -8,6 +8,10 @@
 #' @export
 #' @return Returns a list with the following components:  
 #' \itemize{
+#'   \item \code{L.m0}    The likelihood evaluated at mu=0; the L of the null model (m0)
+#'   \item \code{L.m1}    The likelihood integrated over the whole space weighted by m1 prior; L of the alternative model (m1).
+#'   \item \code{prior.mu0} The likelihood of the prior distribution at mu=0 (m1).
+#'   \item \code{posterior.m0} The likelihood of the posterior distribution evaluated at mu=0 (m0).
 #'   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
 #'   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative \cr 
 #'  }
@@ -19,10 +23,8 @@
 
 visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     
-  y <- data
-  
   # standardize data so sample sd is exactly 1
-  y <- y / sd(y)
+  data <- data / sd(data)
   
   # calculate likelihood function for the data
   # there are two parameters
@@ -31,35 +33,23 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   
   b0s <- seq(-3,3, pointsize)
   
-  # define a function to replace zero values with a tiny one to avoid infinities when
-  #  calculating the log
-  replacezeros <- function(x) {
-    if(x==0) {x <- 1e-60}
-    return(x)
-  }
-  
   # calculate LL for each parm value
-  LL <- sapply(b0s, dnorm, x=y, sd=1) %>% apply(c(1,2), log) %>% apply(2, sum)
-  L <- sapply(b0s, dnorm, x=y, sd=1) %>% apply(2, prod)
-  
+  LL <- apply(apply(sapply(b0s, dnorm, x=data, sd=1), c(1,2), log), 2, sum)
+  L <- apply(sapply(b0s, dnorm, x=data, sd=1), 2, prod)
   
   # prior for b0 based on Cauchy distribution
   prior.b0 <- dcauchy((b0s), scale=scale)
   
   # normalize it
   prior.b0 <- prior.b0 / (sum(prior.b0)*pointsize)
-  log.prior.b0 <- prior.b0 %>% log()
-  
-  
-  # alternative normal prior
-  #prior.b0 <- dnorm(x=b0s, mean=0, sd=.2) %>% log()
+  log.prior.b0 <- log(prior.b0)
   
   # which b0 is zero?
   zeroloc <- which(b0s==0)
   
   #### This is calculating BF as the weighted average of the likelihood
   # numerator of Bayes theorem
-  m0 <- LL[zeroloc] %>% exp()
+  m0 <- exp(LL[zeroloc])
   m1 <- sum(exp(LL+log.prior.b0)) / sum(exp(log.prior.b0))
   m1/m0
   
@@ -78,8 +68,6 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   BF10^-1
   
   m1/m0
-  
-  
   
   
   ### Make a fancy 3 panel plot
@@ -166,5 +154,6 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   BF10 <- m1/m0
   BF01 <- m0/m1
   
-  return(list(BF10=BF10, BF01=BF01))
+  return(list(L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
+              posterior.mu0=posterior.b0[zeroloc],BF10=BF10, BF01=BF01))
 }
