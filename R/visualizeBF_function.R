@@ -78,34 +78,34 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   
     # top panel: likelihood for full range of d
     plot(b0s, exp(LL), 'l', main="Visualizing BF: Ratio of L at mu=0 to weighted average L")
-    points(x=b0s[zeroloc]-.015, y=(m0), cex=1.5, col="red")
-    points(x=b0s[zeroloc]+.015, y=(m1), cex=1.5, col="red")
+    points(x=b0s[zeroloc], y=(m0), cex=1.5, col="red")
+    points(x=b0s[zeroloc], y=(m1), cex=1.5, col="red")
     abline(h=(m1), col="red")
     if (m1 > m0) {
-      points(x=c(0,0), y=c((m0), (m1)) , type='l', col="blue", lwd=2)
-      points(x=c(0,0), y=c(0, (m0)) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c((m0), (m1)) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c(0, (m0)) , type='l', col="blue", lwd=2)
     }
   
     if (m0 > m1) {
-      points(x=c(-.015,-.015), y=c(0, (m0)) , type='l', col="blue", lwd=2)
-      points(x=c(.015,.015), y=c(0, (m1)) , type='l', col="red", lwd=2)
+      points(x=c(0, 0), y=c(0, (m0)) , type='l', col="blue", lwd=2)
+      points(x=c(0, 0), y=c(0, (m1)) , type='l', col="red", lwd=2)
     }
     
     # bottom panel: zoomed in version of top panel
     plot(b0s, exp(LL), 'l', xlim=c(-.1, .1), ylim=c(0, max(m1,m0)*1.1), main="Zoomed-in version of upper panel")
     abline(h=0, col="darkgray")
     points(x=0, y=(m0), cex=1.5, col="red")
-    points(x=.002, y=(m1), cex=1.5, col="red")
+    points(x=0, y=(m1), cex=1.5, col="red")
     abline(h=(m1), col="red")
     
     if (m1 > m0) {
-      points(x=c(0,0), y=c(0, (m1)) , type='l', col="blue", lwd=2)
-      points(x=c(.002,.002), y=c(0, (m0)) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c(0, (m1)) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c(0, (m0)) , type='l', col="blue", lwd=2)
     }
     
     if (m0 > m1) {
-      points(x=c(0,0), y=c(0, (m0)) , type='l', col="blue", lwd=2)
-      points(x=c(.002,.002), y=c(0, (m1)) , type='l', col="red", lwd=2)
+      points(x=c(0, 0), y=c(0, (m0)) , type='l', col="blue", lwd=2)
+      points(x=c(0, 0), y=c(0, (m1)) , type='l', col="red", lwd=2)
     }
   }
   
@@ -118,17 +118,17 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     abline(h=0, col="darkgray")
     points(b0s, posterior.b0, 'l', col="blue")
     
-    points(x=.015, y=prior.b0[zeroloc], cex=1.5, col="red")
-    points(x=-.015, y=posterior.b0[zeroloc], cex=1.5, col="red")
+    points(x=0, y=prior.b0[zeroloc], cex=1.5, col="red")
+    points(x=0, y=posterior.b0[zeroloc], cex=1.5, col="red")
     
     if (m1 > m0) {
-      points(x=c(-.015,-.015), y=c(0, posterior.b0[zeroloc]) , type='l', col="red", lwd=2)
-      points(x=c(.015,.015), y=c(0, prior.b0[zeroloc]) , type='l', col="blue", lwd=2)
+      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
+      points(x=c(0,0), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
     }
     
     if (m0 > m1) {
-      points(x=c(-.015,-.015), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
-      points(x=c(.015,.015), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
+      points(x=c(0,0), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
     }
   
     # bottom panel
@@ -136,17 +136,17 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     abline(h=0, col="darkgray")
     points(b0s, posterior.b0, 'l', col="blue")
     
-    points(x=.001, y=prior.b0[zeroloc], cex=1.5, col="red")
-    points(x=-.001, y=posterior.b0[zeroloc], cex=1.5, col="red")
+    points(x=0, y=prior.b0[zeroloc], cex=1.5, col="red")
+    points(x=0, y=posterior.b0[zeroloc], cex=1.5, col="red")
     
     if (m1 > m0) {
-      points(x=c(-.001,-.001), y=c(0, posterior.b0[zeroloc]) , type='l', col="red", lwd=2)
-      points(x=c(.001,.001), y=c(0, prior.b0[zeroloc]) , type='l', col="blue", lwd=2)
+      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
+      points(x=c(0,0), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
     }
     
     if (m0 > m1) {
-      points(x=c(-.001,-.001), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
-      points(x=c(.001,.001), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
+      points(x=c(0,0), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
     }
   }
   par(mfrow=c(1,1))
