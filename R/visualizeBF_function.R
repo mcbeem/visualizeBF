@@ -19,7 +19,7 @@
 
 visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     
-  data <- y
+  y <- data
   
   # standardize data so sample sd is exactly 1
   y <- y / sd(y)
