@@ -122,8 +122,8 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     points(x=0, y=posterior.b0[zeroloc], cex=1.5, col="red")
     
     if (m1 > m0) {
-      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
       points(x=c(0,0), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
     }
     
     if (m0 > m1) {
@@ -140,8 +140,8 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     points(x=0, y=posterior.b0[zeroloc], cex=1.5, col="red")
     
     if (m1 > m0) {
-      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
       points(x=c(0,0), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
+      points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
     }
     
     if (m0 > m1) {
