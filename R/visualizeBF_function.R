@@ -3,12 +3,15 @@
 #' @param data A vector of data
 #' @param pointsize Width of points for numerical integration, defaults to .001.
 #' @param scale Scale parameter for Cauchy prior, defaults to .707
-#' @param plot The type of plot to produce. 1=BF as weighted likelihood, 2=BF as comparison of densities for mu=0 under prior and posterior distributions.
+#' @param plot The type of plot to produce. 1=BF as weighted likelihood, 
+#'   2=BF as comparison of densities under prior and posterior at mu=0.
+#'   for mu=0 under prior and posterior distributions.
 #' @export
 #' @return Returns a list with the following components:  
 #' \itemize{
 #'   \item \code{L.m0}    The likelihood evaluated at mu=0; the L of the null model (m0) \cr
-#'   \item \code{L.m1}    The likelihood integrated over the whole space weighted by m1 prior; L of the alternative model (m1). \cr
+#'   \item \code{L.m1}    The likelihood integrated over the whole space weighted by m1 prior; 
+#'     likelihood of the alternative model (m1). \cr
 #'   \item \code{prior.mu0} The density of the prior distribution evaluated at mu=0 (m1). \cr
 #'   \item \code{posterior.m0} The density the posterior distribution evaluated at mu=0 (m0). \cr
 #'   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
