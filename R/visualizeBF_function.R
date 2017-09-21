@@ -1,10 +1,9 @@
 #' Function for exploring Bayes Factors.
 #'
-#' 
-#' #' @param data A vector of data
+#' @param data A vector of data
 #' @param pointsize Width of points for numerical integration, defaults to .001.
 #' @param scale Scale parameter for Cauchy prior, defaults to .707
-#' @param plot The type of plot to produce. 1=BF as weighted likelihood, 2=BF as comparison of likelihood for mu=0 under prior and posterior distributions.
+#' @param plot The type of plot to produce. 1=BF as weighted likelihood, 2=BF as comparison of densities for mu=0 under prior and posterior distributions.
 #' @export
 #' @return Returns a list with the following components:  
 #' \itemize{
@@ -14,7 +13,7 @@
 #'   \item \code{posterior.m0} The density the posterior distribution evaluated at mu=0 (m0). \cr
 #'   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
 #'   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative \cr 
-#'   \item \code{figure}  Object containing the plot
+#'   \item \code{figure}  Object containing the plot \cr
 #'  }
 #' @examples
 #' set.seed(1)

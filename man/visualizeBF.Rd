@@ -7,11 +7,13 @@
 visualizeBF(data, pointsize = 0.001, scale = 0.707, plot = 1)
 }
 \arguments{
+\item{data}{A vector of data}
+
 \item{pointsize}{Width of points for numerical integration, defaults to .001.}
 
 \item{scale}{Scale parameter for Cauchy prior, defaults to .707}
 
-\item{plot}{The type of plot to produce. 1=BF as weighted likelihood, 2=BF as comparison of likelihood for mu=0 under prior and posterior distributions.}
+\item{plot}{The type of plot to produce. 1=BF as weighted likelihood, 2=BF as comparison of densities for mu=0 under prior and posterior distributions.}
 }
 \value{
 Returns a list with the following components:  
@@ -22,14 +24,23 @@ Returns a list with the following components:
   \item \code{posterior.m0} The density the posterior distribution evaluated at mu=0 (m0). \cr
   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative \cr 
+  \item \code{figure}  Object containing the plot \cr
  }
 }
 \description{
-#' @param data A vector of data
+Function for exploring Bayes Factors.
 }
 \examples{
 set.seed(1)
 data <- rnorm(n=50, mean=.3, sd=1)
 visualizeBF(data, plot=1)
 visualizeBF(data, plot=2)
+
+a <- visualizeBF(data, plot=1)
+
+# extract density for prior distribution at mu=0
+a$prior.mu0
+
+# view the plot
+a$figure
 }
