@@ -34,6 +34,9 @@
 #' 
 #' # view the plot
 #' a$figure
+#' 
+#' # restore plot defaults
+#' dev.off()
 
 visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     
@@ -197,10 +200,12 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   
   print(figure)
   
-  # restore default pars
-  #par(mfrow=c(1,1), mar=c(5.1,4.1,4.1,2.1), mgp=c(3,1,0), cex=1)
+  # restore default pars. none of this works
   dev.off()
+  plot.new()
+  par(mfrow=c(1,1), mar=c(5.1,4.1,4.1,2.1), mgp=c(3,1,0), cex=1)
   
   return(list(figure=figure, L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
               posterior.mu0=posterior.b0[zeroloc],BF10=BF10, BF01=BF01))
+  
 }

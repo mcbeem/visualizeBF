@@ -49,4 +49,7 @@ a$prior.mu0 / a$posterior.mu0
 
 # view the plot
 a$figure
+
+# restore plot defaults
+dev.off()
 }
