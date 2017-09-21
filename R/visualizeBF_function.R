@@ -177,7 +177,10 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     }
   
     # bottom panel
-    plot(b0s, prior.b0, 'l', xlim=c(-.1, .1), ylim=c(0,ymax), col="red", 
+    
+    ymax2 <- max(prior.b0[zeroloc], posterior.b0[zeroloc])
+    
+    plot(b0s, prior.b0, 'l', xlim=c(-.1, .1), ylim=c(0,ymax2*1.1), col="red", 
          main="(Zoomed-in version of upper panel)", 
          cex.axis=font.scale, xlab="", ylab="")
     title(xlab=expression(mu), ylab="Density")
