@@ -23,8 +23,14 @@
 #' 
 #' a <- visualizeBF(data, plot=1)
 #' 
-#' # extract density for prior distribution at mu=0
+#' # extract density of the prior distribution at mu=0
 #' a$prior.mu0
+#' 
+#' # calculate BF10 as likelihood ratio
+#' a$L.m1 / a$L.m0
+#' 
+#' # alternative method for calculating BF10 as density ratio
+#' a$prior.mu0 / a$posterior.mu0
 #' 
 #' # view the plot
 #' a$figure
@@ -85,7 +91,7 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   ### Make a fancy 2-panel plot
   plot.new()
   font.scale=.8
-  par(mfrow=c(2,1), mar=rep(2,4), mgp=c(1.1,.3,0), family="serif", cex=font.scale)
+  par(mfrow=c(2,1), mar=rep(2,4), mgp=c(1.1,.3,0), cex=font.scale)
 
   
   if (plot==1) {
@@ -192,6 +198,6 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   
   figure
   
-  return(list(plot=figure, L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
+  return(list(figure=figure, L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
               posterior.mu0=posterior.b0[zeroloc],BF10=BF10, BF01=BF01))
 }

@@ -38,8 +38,14 @@ visualizeBF(data, plot=2)
 
 a <- visualizeBF(data, plot=1)
 
-# extract density for prior distribution at mu=0
+# extract density of the prior distribution at mu=0
 a$prior.mu0
+
+# calculate BF10 as likelihood ratio
+a$L.m1 / a$L.m0
+
+# alternative method for calculating BF10 as density ratio
+a$prior.mu0 / a$posterior.mu0
 
 # view the plot
 a$figure
