@@ -8,10 +8,10 @@
 #' @export
 #' @return Returns a list with the following components:  
 #' \itemize{
-#'   \item \code{L.m0}    The likelihood evaluated at mu=0; the L of the null model (m0)
-#'   \item \code{L.m1}    The likelihood integrated over the whole space weighted by m1 prior; L of the alternative model (m1).
-#'   \item \code{prior.mu0} The likelihood of the prior distribution at mu=0 (m1).
-#'   \item \code{posterior.m0} The likelihood of the posterior distribution evaluated at mu=0 (m0).
+#'   \item \code{L.m0}    The likelihood evaluated at mu=0; the L of the null model (m0) \cr
+#'   \item \code{L.m1}    The likelihood integrated over the whole space weighted by m1 prior; L of the alternative model (m1). \cr
+#'   \item \code{prior.mu0} The density of the prior distribution evaluated at mu=0 (m1). \cr
+#'   \item \code{posterior.m0} The density the posterior distribution evaluated at mu=0 (m0). \cr
 #'   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
 #'   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative \cr 
 #'  }
@@ -23,6 +23,10 @@
 
 visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     
+  # do some checks
+  if (!(plot %in% c(1, 2))) {stop("plot must be set to 1 or 2, see ?visualizeBF for details")}
+  
+  
   # standardize data so sample sd is exactly 1
   data <- data / sd(data)
   
@@ -70,14 +74,21 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   m1/m0
   
   
-  ### Make a fancy 3 panel plot
-  par(mfrow=c(2,1))
-  par(mar=rep(2.2,4))
+  ### Make a fancy 2-panel plot
+  font.scale=.8
+  par(mfrow=c(2,1), mar=rep(2,4), mgp=c(1.1,.3,0), family="serif", cex=font.scale)
+
   
   if (plot==1) {
   
     # top panel: likelihood for full range of d
-    plot(b0s, exp(LL), 'l', main="Visualizing BF: Ratio of L at mu=0 to weighted average L")
+    plot(b0s, exp(LL), 'l', 
+         main="", 
+         xlab="", ylab="", cex.main=1)
+    title(expression(bold(paste("The BF is the ratio of the weighted average likelihood to the likelihood at ", mu, " = 0", sep=""))), 
+          line=1.3, cex=font.scale)
+    mtext("Likelihood is black, weighted average likelihood is red", cex=font.scale)
+    title(xlab=expression(mu), ylab="Likelihood")
     points(x=b0s[zeroloc], y=(m0), cex=1.5, col="red")
     points(x=b0s[zeroloc], y=(m1), cex=1.5, col="red")
     abline(h=(m1), col="red")
@@ -92,7 +103,10 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     }
     
     # bottom panel: zoomed in version of top panel
-    plot(b0s, exp(LL), 'l', xlim=c(-.1, .1), ylim=c(0, max(m1,m0)*1.1), main="Zoomed-in version of upper panel")
+    plot(b0s, exp(LL), 'l', xlim=c(-.1, .1), ylim=c(0, max(m1,m0)*1.1), 
+         main="Zoomed-in version of upper panel", 
+         cex.main=1, cex.axis=font.scale, xlab="", ylab="")
+    title(xlab=expression(mu), ylab="Likelihood")
     abline(h=0, col="darkgray")
     points(x=0, y=(m0), cex=1.5, col="red")
     points(x=0, y=(m1), cex=1.5, col="red")
@@ -114,7 +128,13 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     # top panel: prior for d
     ymax <- max(c(prior.b0, posterior.b0))
     
-    plot(b0s, prior.b0, 'l', ylim=c(0,ymax), col="red", main="Visualizing BF: Ratio of prior to posterior L at mu=0")
+    plot(b0s, prior.b0, 'l', ylim=c(0,ymax), col="red", 
+         main="", 
+         cex.main=font.scale, cex.axis=font.scale, xlab="", ylab="")
+    mtext("Prior is red, posterior is blue", cex=font.scale)
+    title(expression(bold(paste("The BF is the ratio of the prior density at ", mu, " = 0 to the posterior density at ", mu, " = 0", sep=""))), 
+          line=1.3, cex=font.scale)
+    title(xlab=expression(mu), ylab="Density")
     abline(h=0, col="darkgray")
     points(b0s, posterior.b0, 'l', col="blue")
     
@@ -132,7 +152,10 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     }
   
     # bottom panel
-    plot(b0s, prior.b0, 'l', xlim=c(-.1, .1), ylim=c(0,ymax), col="red", main="Zoomed-in version of upper panel")
+    plot(b0s, prior.b0, 'l', xlim=c(-.1, .1), ylim=c(0,ymax), col="red", 
+         main="(Zoomed-in version of upper panel)", 
+         cex.axis=font.scale, xlab="", ylab="")
+    title(xlab=expression(mu), ylab="Density")
     abline(h=0, col="darkgray")
     points(b0s, posterior.b0, 'l', col="blue")
     
