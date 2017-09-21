@@ -191,12 +191,14 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     
     figure <- recordPlot()
   }
-  par(mfrow=c(1,1))
   
   BF10 <- m1/m0
   BF01 <- m0/m1
   
   figure
+  
+  # restore default pars
+  par(mfrow=c(1,1), mar=c(5.1,4.1,4.1,2.1), mgp=c(3,1,0), cex=1)
   
   return(list(figure=figure, L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
               posterior.mu0=posterior.b0[zeroloc],BF10=BF10, BF01=BF01))
