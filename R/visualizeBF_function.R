@@ -114,6 +114,7 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     points(x=b0s[zeroloc], y=(m0), cex=1.5, col="red")
     points(x=b0s[zeroloc], y=(m1), cex=1.5, col="red")
     abline(h=(m1), col="red")
+    abline(h=0, col="darkgray")
     if (m1 > m0) {
       points(x=c(0,0), y=c((m0), (m1)) , type='l', col="red", lwd=2)
       points(x=c(0,0), y=c(0, (m0)) , type='l', col="blue", lwd=2)
