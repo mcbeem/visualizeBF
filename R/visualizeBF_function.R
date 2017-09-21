@@ -14,12 +14,21 @@
 #'   \item \code{posterior.m0} The density the posterior distribution evaluated at mu=0 (m0). \cr
 #'   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
 #'   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative \cr 
+#'   \item \code{figure}  Object containing the plot
 #'  }
 #' @examples
 #' set.seed(1)
 #' data <- rnorm(n=50, mean=.3, sd=1)
 #' visualizeBF(data, plot=1)
 #' visualizeBF(data, plot=2)
+#' 
+#' a <- visualizeBF(data, plot=1)
+#' 
+#' # extract density for prior distribution at mu=0
+#' a$prior.mu0
+#' 
+#' # view the plot
+#' a$figure
 
 visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
     
@@ -75,6 +84,7 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   
   
   ### Make a fancy 2-panel plot
+  plot.new()
   font.scale=.8
   par(mfrow=c(2,1), mar=rep(2,4), mgp=c(1.1,.3,0), family="serif", cex=font.scale)
 
@@ -121,6 +131,8 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
       points(x=c(0, 0), y=c(0, (m0)) , type='l', col="blue", lwd=2)
       points(x=c(0, 0), y=c(0, (m1)) , type='l', col="red", lwd=2)
     }
+    
+    figure <- recordPlot()
   }
   
   if (plot==2) {
@@ -171,12 +183,16 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
       points(x=c(0,0), y=c(0, posterior.b0[zeroloc]) , type='l', col="blue", lwd=2)
       points(x=c(0,0), y=c(0, prior.b0[zeroloc]) , type='l', col="red", lwd=2)
     }
+    
+    figure <- recordPlot()
   }
   par(mfrow=c(1,1))
   
   BF10 <- m1/m0
   BF01 <- m0/m1
   
-  return(list(L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
+  figure
+  
+  return(list(plot=figure, L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
               posterior.mu0=posterior.b0[zeroloc],BF10=BF10, BF01=BF01))
 }

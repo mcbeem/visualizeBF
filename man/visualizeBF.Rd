@@ -7,8 +7,6 @@
 visualizeBF(data, pointsize = 0.001, scale = 0.707, plot = 1)
 }
 \arguments{
-\item{data}{A vector of data}
-
 \item{pointsize}{Width of points for numerical integration, defaults to .001.}
 
 \item{scale}{Scale parameter for Cauchy prior, defaults to .707}
@@ -18,12 +16,16 @@ visualizeBF(data, pointsize = 0.001, scale = 0.707, plot = 1)
 \value{
 Returns a list with the following components:  
 \itemize{
+  \item \code{L.m0}    The likelihood evaluated at mu=0; the L of the null model (m0) \cr
+  \item \code{L.m1}    The likelihood integrated over the whole space weighted by m1 prior; L of the alternative model (m1). \cr
+  \item \code{prior.mu0} The density of the prior distribution evaluated at mu=0 (m1). \cr
+  \item \code{posterior.m0} The density the posterior distribution evaluated at mu=0 (m0). \cr
   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative \cr 
  }
 }
 \description{
-This function plots the prior, likelihood, and posterior distribution of the sample mean. It reports the MAP (maximum a posteriori) and EAP (expected a posteriori) estimates of the mean as well as the 95\% credible interval around the MAP.
+#' @param data A vector of data
 }
 \examples{
 set.seed(1)
