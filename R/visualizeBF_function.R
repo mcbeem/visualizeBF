@@ -12,8 +12,9 @@
 #'   \item \code{prior.mu0} The density of the prior distribution evaluated at mu=0 (m1). \cr
 #'   \item \code{posterior.m0} The density the posterior distribution evaluated at mu=0 (m0). \cr
 #'   \item \code{BF10}    The Bayes Factor for alternative hypothesis relative to null.  \cr 
-#'   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative \cr 
-#'   \item \code{figure}  Object containing the plot \cr
+#'   \item \code{BF01}    The Bayes Factor for the null hypothesis relative to the alternative. \cr 
+#'   \item \code{figure}  Object containing the plot. \cr
+#'   \item \code{note} Instructions for restoring plot defaults; temporary. \cr
 #'  }
 #' @examples
 #' set.seed(1)
