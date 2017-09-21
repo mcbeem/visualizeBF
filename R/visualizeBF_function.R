@@ -205,7 +205,10 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   plot.new()
   par(mfrow=c(1,1), mar=c(5.1,4.1,4.1,2.1), mgp=c(3,1,0), cex=1)
   
+  # kludgy, temporary fix
+  note <- "Run dev.off() at the console to restore plot defaults."
+  
   return(list(figure=figure, L.m0=m0, L.m1=m1, prior.mu0=prior.b0[zeroloc], 
-              posterior.mu0=posterior.b0[zeroloc],BF10=BF10, BF01=BF01))
+              posterior.mu0=posterior.b0[zeroloc],BF10=BF10, BF01=BF01, note=note))
   
 }
