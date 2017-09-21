@@ -195,7 +195,7 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   BF10 <- m1/m0
   BF01 <- m0/m1
   
-  figure
+  print(figure)
   
   # restore default pars
   #par(mfrow=c(1,1), mar=c(5.1,4.1,4.1,2.1), mgp=c(3,1,0), cex=1)
