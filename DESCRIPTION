@@ -1,6 +1,6 @@
 Package: visualizeBF
 Title: Function for Visualizing the Bayes Factor for the Mean of Continuous Data
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: person("Matthew", "McBee", email = "mmcbee@gmail.com", role = c("aut", "cre"))
 Description: This function calculates BFs and makes plots to illustrate their meaning.
 Depends: R (>= 3.3.0)
