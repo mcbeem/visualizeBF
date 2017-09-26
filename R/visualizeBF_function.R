@@ -84,10 +84,6 @@ visualizeBF <- function(data, pointsize=0.001, scale=.707, plot=1) {
   posterior.b0 <- exp((LL+log.prior.b0)) / (sum(exp(LL+log.prior.b0))*pointsize)
   prior.b0[zeroloc] / posterior.b0[zeroloc]
   
-  plot(b0s, posterior.b0, "l", col="blue")
-  points(b0s, prior.b0, "l", col="red")
-  abline(v=0)
-  
   BF10 <- prior.b0[zeroloc] / posterior.b0[zeroloc]
   BF10
   BF10^-1
