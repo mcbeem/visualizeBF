@@ -12,7 +12,7 @@ You need the `devtools` package to install this from github.
 install.packages("devtools")
 ```
 
-Then install `plotBayes`.
+Then install `visualizeBF`.
 
 ``` r
 devtools::install_github("mcbeem/visualizeBF")
