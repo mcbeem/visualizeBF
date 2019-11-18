@@ -1,0 +1,57 @@
+---
+title: "Introduction to ```visualizeBF```"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+The ```visualizeBF``` package is useful for teaching about Bayes Factors, providing two different visual interpretations of the concept.
+
+This is mostly a toy package useful for teaching.
+
+# Installation
+
+You need the ```devtools``` package to install this from github.
+
+```{r, eval=F}
+install.packages("devtools")
+```
+
+Then install ```plotBayes```.
+
+```{r, eval=F}
+devtools::install_github("mcbeem/visualizeBF")
+```
+
+And then load it.
+
+```{r, echo=T, eval=F}
+library(visualizeBF)
+```
+
+```{r, include=F}
+library(visualizeBF)
+```
+
+
+# Example
+
+First, simulate some data.
+
+```{r}
+set.seed(1)
+data <- rnorm(n=50, mean=.3, sd=1)
+```
+
+Visualize the BF as the ratio of the weighted average likelihood under $H_1$ to the likelihood of the data under $H_0$ (via ```plot=1```).
+
+```{r, fig.width=9, fig.height=3}
+visualizeBF(data, plot=1)
+```
+
+Visualize the BF as the ratio of prior to posterior density under $H_0$ (via ```plot=2```).
+
+```{r, fig.width=9, fig.height=3}
+visualizeBF(data, plot=2)
+```
+
